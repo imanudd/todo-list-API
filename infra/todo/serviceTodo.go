@@ -33,12 +33,15 @@ func (svc *TodoServiceImpl) GetTodoById(c echo.Context, id int) (res Response, e
 	if err != nil {
 		panic(err)
 	}
+
 	if res.Data == nil {
 		return res, err
+	} else {
+		fmt.Println(res.Data)
+		res.Status = "Succsess"
+		res.Message = "Succsess"
+		return res, nil
 	}
-	res.Status = "Succsess"
-	res.Message = "Succsess"
-	return res, nil
 }
 func (svc *TodoServiceImpl) CreateTodo(c echo.Context, req Todo) (res Response, err error) {
 	res, err = svc.repo.CreateTodo(c, req)

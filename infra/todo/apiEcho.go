@@ -54,9 +54,9 @@ func (api *API) GetTodoByID(c echo.Context) error {
 			"Status":  "Not Found",
 			"Message": "Todo with ID " + conv + " Not Found",
 		})
+	} else {
+		return c.JSON(http.StatusOK, res)
 	}
-	return c.JSON(http.StatusOK, res)
-
 }
 
 func (api *API) CreateTodo(c echo.Context) error {
