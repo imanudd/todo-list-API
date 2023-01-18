@@ -1,11 +1,11 @@
-FROM golang:1.19-apline
+FROM golang
 
-RUN mkdir -p 
 WORKDIR /app
+
 COPY . .
 
-RUN go build -o todo-api
+RUN go build -o todolist-api
 
 EXPOSE 8080
 
-CMD ./todo-api
+ENTRYPOINT ["/app/todolist-api"]

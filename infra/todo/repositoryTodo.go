@@ -49,8 +49,12 @@ func (repo *TodoRepositoryImpl) GetAllTodo(c echo.Context, req Todo) (res Respon
 }
 func (repo *TodoRepositoryImpl) GetTodoById(c echo.Context, id int) (res Response, err error) {
 	var todo Todo
-	result := repo.db.Where("activity_group_id = ?", id).Find(&todo)
+	result := repo.db.Where("todo_id = ?", id).Find(&todo)
 	if result.Error != nil {
+		return res, err
+	}
+	if todo.Todo_id == 0 {
+		res.Data = nil
 		return res, err
 	}
 	res.Data = todo
